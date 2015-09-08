@@ -6,7 +6,8 @@ var path = require('path'),
     handlebar = require('handlebars'),
     fs = require('fs'),
     execFile = require('child_process').execFile,
-    requireUncached = require('require-uncached');
+    requireUncached = require('require-uncached'),
+    semver = require('semver');
 
 /*
  * Global variables
@@ -153,6 +154,12 @@ module.exports = function (options) {
   gulpOptions = options || {};
 
   configJasmine(gulpOptions.jasmineVersion);
+
+  // if Node is above 0.12.0, notify
+  if (semver.satisfies(process.version.match(/^v(\d+\.\d+\.\d+)/)[1], '>=0.12.0')) {
+    console.log('#################### Your version of Node is above 0.12.0             ####################');
+    console.log('#################### Please use dflynn15/gulp-jasmine-phantom instead ####################');
+  }
 
   return through.obj(
     function (file, encoding, callback) {
