@@ -1,14 +1,17 @@
 gulp-jasmine-phantom
 =============
 
-A gulp plugin that runs Jasmine tests with either PhantomJS or minijasminenode2.
+A gulp plugin that runs Jasmine tests with PhantomJS.
+
+This fork is intended for use in environments where PhantomJS is present and the Node version is `0.10.x`*.
+
+It removes the ability to use mininodejasmine2 due to its inclusion introducing the need for 
+`execSync` which is not available when using a version of Node under `0.12.x`.
+
+*The current need is for running JS unit tests on [Travis-CI](https://travis-ci.org/) where the primary language is not Node. In this situation Node is available but is (as of 08 Sept 2015) locked to `0.10.36`.
 
 Dependencies
 ------------
-
-This module uses `execSync` which is not available in any version of Node under `0.12.x`.
-If you have any specific concerns about upgrading versions of Node or reasons not use
-`execSync` feel free to open an issue!
 
 Before you install `gulp-jasmine-phantom` please ensure that you have PhantomJS
 installed on your machine. The plugin assumes that the `phantomjs` binary is
@@ -25,26 +28,12 @@ Install
 -----
 
 ```
-$ npm install --save-dev gulp-jasmine-phantom
+$ npm install --save-dev git://github.com/alphagov/gulp-jasmine-phantom.git#<latest commit SHA>
 ```
 
 Usage
 -----
-By default, `gulp-jasmine-phantom` runs your tests with `minijasminenode` and
-not `phantomjs`.
-This is an effort to keep your tasks running as quickly as possible!
-
 Basic usage:
-```javascript
-var gulp = require('gulp');
-var jasmine = require('gulp-jasmine-phantom');
-
-gulp.task('default', function () {
-  return gulp.src('spec/test.js')
-          .pipe(jasmine());
-});
-```
-To use `phantomjs` for tests (ie: integration tests) use the following setup:
 
 ```javascript
 var gulp = require('gulp');
@@ -52,29 +41,7 @@ var jasmine = require('gulp-jasmine-phantom');
 
 gulp.task('default', function() {
   return gulp.src('spec/test.js')
-          .pipe(jasmine({
-            integration: true
-          }));
-});
-```
-
-Also, remember you can always run any multitude of tests using different Gulp
-tasks. For example, running unit tests and integration tests asynchronously.
-
-```javascript
-var gulp = require('gulp');
-var jasmine = require('gulp-jasmine-phantom');
-
-gulp.task('unitTests', function () {
-  return gulp.src('spec/test.js')
           .pipe(jasmine());
-});
-
-gulp.task('integrationTests', function() {
-  return gulp.src('spec/test.js')
-          .pipe(jasmine({
-            integration: true
-          }));
 });
 ```
 
@@ -86,12 +53,6 @@ Type: `string` <br />
 Default: '2.0'
 
 Specifies the version of Jasmine you want to run. Possible options are in the `vendor/` folder. Just specify what `2.x` minor release you want.
-
-#### integration
-Type: `boolean` <br />
-Default: false
-
-Run your tests with `phantomjs`
 
 #### keepRunner
 Type: `boolean | string` <br />

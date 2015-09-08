@@ -1,11 +1,11 @@
 {
   "name": "gulp-jasmine-phantom",
   "version": "2.0.1",
-  "description": "Jasmine 2.0 suite runner, optionally with PhantomJS",
+  "description": "Jasmine 2.0 suite runner using PhantomJS",
   "license": "MIT",
   "repository": "dflynn15/gulp-jasmine-phantom",
   "engines": {
-    "node": ">=0.12.0"
+    "node": ">=0.10.0"
   },
   "keywords": [
     "gulpplugin",
@@ -23,11 +23,11 @@
   ],
   "dependencies": {
     "gulp-util": "^3.0.0",
-    "minijasminenode2": "dflynn15/minijasminenode",
     "through2": "^0.6.1",
     "handlebars": "^2.0.0",
     "require-uncached": "^1.0.2",
-    "glob": "^4.0.6"
+    "glob": "^4.0.6",
+    "semver": "5.0.1"
   },
   "devDependencies": {
     "JSON": "^1.0.0",
