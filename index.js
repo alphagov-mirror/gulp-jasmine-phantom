@@ -156,8 +156,9 @@ module.exports = function (options) {
 
   // if Node is above 0.12.0, notify
   if (semver.satisfies(process.version.match(/^v(\d+\.\d+\.\d+)/)[1], '>=0.12.0')) {
-    console.log('#################### Your version of Node is above 0.12.0             ####################');
-    console.log('#################### Please use dflynn15/gulp-jasmine-phantom instead ####################');
+    new gutil.log(
+      'Your version of Node is above 0.12.0, please use dflynn15/gulp-jasmine-phantom instead of alphagov/gulp-jasmine-phantom'
+    );
   }
 
   return through.obj(
