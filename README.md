@@ -1,3 +1,9 @@
+‼️‼️ DEPRECATED ‼️‼️
+=============
+PhantomJS is no longer being maintain. Instead of using this repository, switch
+to another headless browser. When this project was archived the [Digital Marketplace team were the only team using it](https://github.com/search?q=alphagov%2Fgulp-jasmine-phantom%23node-10-fs-unlink&type=Code). The team migrated to Jest/JSDOM
+in January 2020 and so no longer required it. The team could not see any other codebase on github using it so decided to archive it instead of deleting.
+
 gulp-jasmine-phantom
 =============
 
@@ -7,7 +13,6 @@ This fork is intended for use in environments where PhantomJS is present and the
 
 It removes the ability to use mininodejasmine2 due to its inclusion introducing the need for 
 `execSync` which is not available when using a version of Node under `0.12.x`.
-
 *The current need is for running JS unit tests on [Travis-CI](https://travis-ci.org/) where the primary language is not Node. In this situation Node is available but is (as of 08 Sept 2015) locked to `0.10.36`.
 
 Dependencies
